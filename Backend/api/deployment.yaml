@@ -1,0 +1,43 @@
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "api-torch"
+  namespace: "default"
+  labels:
+    app: "api-torch"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "api-torch"
+  template:
+    metadata:
+      labels:
+        app: "api-torch"
+    spec:
+      containers:
+      - name: "api-torch-sha256-1"
+        image: "us-central1-docker.pkg.dev/autodefenseml/api-torch/api-torch@sha256:bb849fb9cf2f8cbfaac62ab4f3a8cb67a5e481844c7cf82a8de24cc8075dc23d"
+---
+apiVersion: "autoscaling/v2"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "api-torch-hpa-qc1l"
+  namespace: "default"
+  labels:
+    app: "api-torch"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "api-torch"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      target:
+        type: "Utilization"
+        averageUtilization: 80

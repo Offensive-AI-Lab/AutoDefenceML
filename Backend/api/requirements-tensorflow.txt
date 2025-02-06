@@ -1,0 +1,16 @@
+adversarial-robustness-toolbox==1.16.0
+gcloud==0.18.3
+fastapi==0.100.0
+uvicorn==0.23.1
+func-timeout==4.3.5
+google-cloud-pubsub==2.18.4
+google-cloud-firestore==2.14.0
+python-dotenv==1.0.0
+dill==0.3.7
+keras==2.13.1
+tensorflow==2.13.0
+tensorboard==2.13.0
+tensorflow-datasets==4.9.3
+tensorflow-estimator==2.13.0
+tensorflow-metadata==1.14.0
+numpy

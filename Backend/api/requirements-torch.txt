@@ -1,0 +1,12 @@
+adversarial-robustness-toolbox==1.16.0
+gcloud==0.18.3
+fastapi==0.100.0
+uvicorn==0.23.1
+func-timeout==4.3.5
+google-cloud-pubsub==2.18.4
+google-cloud-firestore==2.14.0
+torch==1.13.1
+torchvision==0.14.1
+python-dotenv==1.0.0
+dill==0.3.8
+numpy==1.24.3

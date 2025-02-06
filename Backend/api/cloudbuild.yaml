@@ -1,0 +1,38 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+steps:
+  # Build the Docker image and tag it with both the commit SHA and 'latest'
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "build"
+      - "-t"
+      - "${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:$SHORT_SHA"
+      - "-t"
+      - "${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:latest"
+      - "${_SERVICE_DIR}"
+
+  # Push the image tagged with the commit SHA to the registry
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "push"
+      - "${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:$SHORT_SHA"
+
+  # Push the image tagged as 'latest' to the registry
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "push"
+      - "${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:latest"
+
+  # Get credentials for the Kubernetes cluster and update the Kubernetes deployment
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: "sh"
+    args:
+      - "-c"
+      - |
+        gcloud container clusters get-credentials ${_PROJECT_ID} --region=${_REGION} --project=${_PROJECT_ID} &&
+        kubectl set image deployment/${_IMAGE_NAME}-deployment ${_IMAGE_NAME}=${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:$SHORT_SHA --namespace=default
+
+images:
+  - "${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:$SHORT_SHA"
+  - "${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REPOSITORY}/${_IMAGE_NAME}:latest"

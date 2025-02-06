@@ -1,0 +1,12 @@
+# Ignore Terraform files
+CI-CD/terraform.tfstate
+CI-CD/terraform.tfstate.backup
+CI-CD/.terraform/
+CI-CD/.terraform.lock.hcl
+Backend/api/src/Infrastructure/terraform.tfstate
+Backend/api/src/Infrastructure/terraform.tfstate.backup
+Backend/api/src/Infrastructure/.terraform/
+Backend/api/src/Infrastructure/.terraform.lock.hcl
+Backend/api/.idea/
+
+Backend/credentials.json
