@@ -34,7 +34,10 @@ AutoDefenceML is packed with powerful features to ensure the robustness and fair
 *In terms of user experience, ADML offer the following:*
 - A REST API for easy intergration and interaction
 - The ability to provide a custom model and dataset python definitions or non-conventional formats.
-- The ability to dynamically change python requiremetns in individual evaautuions (under developent)
+- The ability to dynamically change python requirements in individual evaautuions (under developent)
+
+#### Plugins: Adding new Attacks & Defences
+- Developers can easily add new attacks an defences to ADML. Details on how to dot his can be found in the [plugon documentation](plugin_docs.md). 
 
 #### Limitations
 *AutoDefenceML is in its early stages of development so there are some limitations to be aware of:*
@@ -241,6 +244,8 @@ bashCopypip install --index-url https://us-central1-python.pkg.dev/autodefenseml
 pip install --index-url https://us-central1-python.pkg.dev/autodefenseml/art-handler/simple/ art-handler
 
 # API Endpoints
+
+The following is a brief summary of the REST API after launching AutoDefenceML. For more details see the [API documentation](api_docs.md).
 
 ### Model Evaluation Feature
 
