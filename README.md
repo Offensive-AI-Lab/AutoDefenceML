@@ -37,7 +37,7 @@ AutoDefenceML is packed with powerful features to ensure the robustness and fair
 - The ability to dynamically change python requirements in individual evaautuions (under developent)
 
 #### Plugins: Adding new Attacks & Defences
-- Developers can easily add new attacks an defences to ADML. Details on how to dot his can be found in the [plugon documentation](plugin_docs.md). 
+- Developers can easily add new attacks an defences to ADML. Details on how to dot his can be found in the [plugin documentation](plugin_docs.md). 
 
 #### Limitations
 *AutoDefenceML is in its early stages of development so there are some limitations to be aware of:*
